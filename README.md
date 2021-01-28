@@ -41,3 +41,11 @@ if month_diff == 0: # If we have 0 months worth of prices, edit the variable to 
     month_diff = 1
 smooth = int(2 * month_diff + 3) # Level of smoothness in our graph
 ```
+Now lets smoothen our graph
+```python
+pts = savgol_filter(series, smooth, 3) # 3 is the order of the polynomials
+```
+Here's the result of plotting `pts`.
+<p align="center">
+  <img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/BAC_smooth.png" alt="BAC smooth" width="50%" height="50%">
+</p>
