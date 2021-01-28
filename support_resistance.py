@@ -48,8 +48,8 @@ def local_min_max(pts):
                     local_max.append((i, pts[i]))
     return local_min, local_max
 
-symbol = 'BAC'
-df = web.DataReader(symbol, 'yahoo', '2015-01-01', '2015-07-01')
+symbol = 'AAPL'
+df = web.DataReader(symbol, 'yahoo', '2019-01-01', '2019-04-01')
 series = df['Close']
 series.index = np.arange(series.shape[0])
 
