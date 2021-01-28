@@ -32,3 +32,12 @@ The closing prices of the Bank Of America stock from January 1, 2015 to July 1, 
 <p align="center">
   <img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/BAC.png" alt="BAC 2015-01-01 to 2015-07-01" width="50%" height="50%">
 </p>
+
+### Step 1: Smoothen the graph
+We can use the `savgol_filter` function from the `scipy.signal` module, to make the graph smoother.  I have created a simple algorithm to determine how much we should smoothen a graph.  All the closing prices of a stock are stored in a `pd.Series` object.  To determine the level of smoothness we want in our graph, we have to find the difference in months of the 2 dates.  Then we multiply it with 2 and add it with 3.
+```python
+month_diff = series.shape[0] // 30
+if month_diff == 0: # If we have 0 months worth of prices, edit the variable to = 1
+    month_diff = 1
+smooth = int(2 * month_diff + 3) # Level of smoothness in our graph
+```
