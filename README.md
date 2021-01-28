@@ -30,3 +30,4 @@ df = web.DataReader(symbol, 'yahoo', '2015-01-01', '2015-07-01')
 ## How it works
 The closing prices of the Bank Of America stock from January 1, 2015 to July 1, 2015 look like this.
 ![BAC 2015-01-01 to 2015-07-01](https://github.com/lil-zohee/SupportResistance/blob/main/Images/BAC.png =250x250)
+<img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/BAC.png" alt="BAC 2015-01-01 to 2015-07-01" width="50%" height="50%">
