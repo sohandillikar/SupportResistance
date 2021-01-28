@@ -61,7 +61,7 @@ To find the local maximum and local minimum, I have created a function, which ta
 </p>
 
 ### Step 3: Line of best fit between local minimum and maximum
-To find the line of best fit between the local minimum and maximum points, I used the `sklean.linear_model.LinearRegression` model.  I have created a function
+To find the line of best fit between the local minimum and maximum points, I used the `sklean.linear_model.LinearRegression` model.  I have created a function on lines 14 - 19 in the `support_resistance.py`.
 ```python
 def regression_ceof(pts):
     """
@@ -84,4 +84,8 @@ resistance = (local_max_slope * np.array(series.index)) + local_max_int
 After plotting the support and resistance lines, we get this.
 <p align="center">
   <img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/BAC_smooth_sr.png" alt="BAC smooth sr" width="50%" height="50%">
+</p>
+This is what it looks like on the normal graph.
+<p align="center">
+  <img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/BAC_sr.png" alt="BAC sr" width="50%" height="50%">
 </p>
