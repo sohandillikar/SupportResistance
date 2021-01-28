@@ -49,3 +49,9 @@ Here's the result of plotting `pts`.
 <p align="center">
   <img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/BAC_smooth.png" alt="BAC smooth" width="50%" height="50%">
 </p>
+
+### Step 2: Finding the local maximum and minimum points
+To find the local maximum and local minimum, I have created a function, which takes up lines 21 - 49 in the `support_resistance.py`.  Essentially, this function loops through the given `pts` from indexes `1` to `-1`.  If the point is less than the point behind it and less than the point ahead of it, then it is a local minimum.  Similarly, if the point in greater than the point behind it and greater than the point ahead of it, it is a local maximum.  However, if we simply do this, then the algorithm will detect many local minimums and maximums.  Therefore, I have used the Pythagorean theorem to determine the distance between the previous point and current point, as well as the distance between the current point and next point.  I made sure to only consider a point as a local maximum or minimum if the distance between it and the next point was greater than half of the distance between it and the previous point.  Here is the result of plotting the local maximum and minimum points.
+<p align="center">
+  <img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/BAC_locals.png" alt="BAC smooth" width="50%" height="50%">
+</p>
