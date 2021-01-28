@@ -17,3 +17,7 @@ cd SupportResistance/
 ```sh
 pip3 install -r requirements.txt
 ```
+4. Now you can run the program
+```sh
+python3 support_resistance.py
+```
