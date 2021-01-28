@@ -21,16 +21,16 @@ pip3 install -r requirements.txt
 ```sh
 python3 support_resistance.py
 ```
-In the python script, I tried to predict the support and resistance for BAC stock from the dates of January 1, 2015 to July 1, 2015.  However, you can change that in lines 51 and 52 of the program.
+In the python script, I tried to predict the support and resistance for AAPL stock from the dates of January 1, 2019 to April 1, 2019.  However, you can change that in lines 51 and 52 of the program.
 ```python
-symbol = 'BAC'
-df = web.DataReader(symbol, 'yahoo', '2015-01-01', '2015-07-01')
+symbol = 'AAPL'
+df = web.DataReader(symbol, 'yahoo', '2019-01-01', '2019-04-01')
 ```
 
 ## How it works
-The closing prices of the Bank Of America stock from January 1, 2015 to July 1, 2015 look like this.
+The closing prices of the Bank Of America stock from January 1, 2019 to April 1, 2019 look like this.
 <p align="center">
-  <img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/BAC.png" alt="BAC 2015-01-01 to 2015-07-01" width="50%" height="50%">
+  <img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/AAPL.png" alt="AAPL 2019-01-01 to 2019-04-01" width="50%" height="50%">
 </p>
 
 ### Step 1: Smoothen the graph
@@ -47,17 +47,17 @@ pts = savgol_filter(series, smooth, 3) # 3 is the order of the polynomials
 ```
 Here's the result of plotting `pts`.
 <p align="center">
-  <img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/BAC_smooth.png" alt="BAC smooth" width="50%" height="50%">
+  <img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/AAPL_smooth.png" alt="AAPL smooth" width="50%" height="50%">
 </p>
 Here's what the two graphs look like in comparison.
 <p align="center">
-  <img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/BAC_normal_smooth.png" alt="BAC normal smooth" width="50%" height="50%">
+  <img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/AAPL_normal_smooth.png" alt="AAPL normal smooth" width="50%" height="50%">
 </p>
 
 ### Step 2: Finding the local maximum and minimum points
 To find the local maximum and local minimum, I have created a function, which takes up lines 21 - 49 in the `support_resistance.py`.  Essentially, this function loops through the given `pts` from indexes `1` to `-1`.  If the point is less than the point behind it and less than the point ahead of it, then it is a local minimum.  Similarly, if the point in greater than the point behind it and greater than the point ahead of it, it is a local maximum.  However, if we simply do this, then the algorithm will detect many local minimums and maximums.  Therefore, I have used the Pythagorean theorem to determine the distance between the previous point and current point, as well as the distance between the current point and next point.  I made sure to only consider a point as a local maximum or minimum if the distance between it and the next point was greater than half of the distance between it and the previous point.  Here is the result of plotting the local maximum and minimum points.
 <p align="center">
-  <img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/BAC_locals.png" alt="BAC locals" width="50%" height="50%">
+  <img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/AAPL_locals.png" alt="AAPL locals" width="50%" height="50%">
 </p>
 
 ### Step 3: Line of best fit between local minimum and maximum
@@ -83,9 +83,9 @@ resistance = (local_max_slope * np.array(series.index)) + local_max_int
 ```
 After plotting the support and resistance lines, we get this.
 <p align="center">
-  <img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/BAC_smooth_sr.png" alt="BAC smooth sr" width="50%" height="50%">
+  <img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/AAPL_smooth_sr.png" alt="AAPL smooth sr" width="50%" height="50%">
 </p>
 This is what it looks like on the normal graph.
 <p align="center">
-  <img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/BAC_sr.png" alt="BAC sr" width="50%" height="50%">
+  <img src="https://github.com/lil-zohee/SupportResistance/blob/main/Images/AAPL_sr.png" alt="AAPL sr" width="50%" height="50%">
 </p>
